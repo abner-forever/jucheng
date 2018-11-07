@@ -39,6 +39,8 @@ export default {
     display: flex;
     justify-content: space-around;
     border-top: 1px solid #e6e6e6;
+    background-color: #fff;
+    z-index: 999;
      a{
          width: .666667rem;
         height: .666667rem;

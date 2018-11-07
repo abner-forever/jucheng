@@ -3,10 +3,11 @@
     <swiper class="slide-show " :options="swiperOption" ref="mySwiper">
     <!-- slides -->
     <swiper-slide
-        v-for = "item in img"
+        v-for = "item in imgs"
         :key = 'item.id'
+        v-if= "imgs"
     >
-    <img :src="item.img_url">
+    <img :src="'http://image.juooo.com/'+item.touch_image_url">
     </swiper-slide>
    
     <!-- Optional controls -->
@@ -27,23 +28,18 @@
 
 <script>
 import axios from 'axios'
+import qs from 'qs';
 export default {
     data(){
         return {
-            img :[
-            {id:1,img_url:'http://image.juooo.com//group1/M00/01/9E/rAoKmVvJQiGAW5sAAAIGg3z4fpY143.jpg'},
-            {id:2,img_url:'http://image.juooo.com//group1/M00/01/9E/rAoKmVvJUeSAIOraAADCQoyu6lc585.jpg'},
-            {id:3,img_url:'http://image.juooo.com//group1/M00/02/40/rAoKNVu-6NyAdlJ8AAESTC-sHgs110.jpg'},
-            {id:4,img_url:'http://image.juooo.com//group1/M00/02/4B/rAoKNVvQEuuAT89WAAHNwi_c1pw237.jpg'},
-            {id:5,img_url:'http://image.juooo.com//group1/M00/02/4B/rAoKNVvQFDuAIdxHAAKPRYZ5_0c241.jpg'}
-        ],
-        swiperOption: {
-            pagination:{
-                el : '.swiper-pagination'
-            },
-            loop  :true,
-            autoplay :true,
-        }
+            imgs:[],
+            swiperOption: {
+                pagination:{
+                    el : '.swiper-pagination'
+                },
+                loop: true,
+                autoplay:true,
+            }
         }
 
     },
@@ -53,26 +49,27 @@ export default {
       }
     },
     //https://m.juooo.com/index/getNationalSildeList
-    //  created(){
-    //     axios({
-    //             method: 'post',
-    //             url: '/juoo/index/getNationalSildeList',
-    //             data: {
-    //                confType: 'L',
-    //                     isSymbol: 1,
-    //                     limit: 6
-    //             },
-    //             })
-    //         .then(function (res) {
-    //             console.log(1);
-                
-    //             console.log(res)
-    //             // this.seckill = res
-    //         })
-    //         .catch(function (error) {
-    //             console.log(error);
-    //         });
-    // },
+    created(){
+        let that = this
+       axios({
+                method: 'post',
+                url: '/jz/index/getNationalSildeList',
+                headers : {
+                    'Content-Type' : 'application/x-www-form-urlencoded'
+                },
+                data: qs.stringify({
+                    "confType": "L",
+                    "isSymbol": 1,
+                    "limit": 6
+                }),
+                })
+            .then(function (res) {
+                that.imgs = res.data.data
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    },
 
 }
 </script>

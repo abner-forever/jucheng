@@ -5,17 +5,17 @@ function resolve(url){
 }
 
 module.exports = {
-    devServer:{
+    devServer: {
         port: 8000,
         proxy :{
-            'juoo': {
-                target : 'https://m.juooo.com',
+            '/jz': {
+                target : 'https://m.juooo.com/',
                 changeOrigin :true,
                 pathRewrite : {
-                    '^juoo' : ''
+                    '^/jz' : ''
                 }
             }
-        }
+        } 
     },
     chainWebpack (config){
         config.resolve
