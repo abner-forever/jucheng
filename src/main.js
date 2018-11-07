@@ -5,6 +5,12 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+import '@libs/flexible'
+
+//引入插件
+import '@libs'
+
+
 new Vue({
   router,
   store,
