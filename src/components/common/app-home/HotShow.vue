@@ -1,6 +1,6 @@
 <template>
     <div class="hot-wraper">
-        <div class="title">巡回展演</div>
+        <div class="title">热门演出</div>
         <ul class="hotshow-list clearfix">
             <!-- slides -->
             <li class="list-item"
@@ -20,13 +20,16 @@
             </li>
     
         </ul>
+        <div class="show-all">
+            <a >查看全部演出 &nbsp;&nbsp;<i class="fa fa-angle-right"></i> </a>
+        </div>
     </div>
 </template>
 
 <style lang="scss">
 .hot-wraper{
     width: 9.666667rem;
-    padding: .266667rem 0 .4rem .333333rem;
+    padding: .266667rem 0 0 .333333rem;
     background: #fff;
     .title{
          font-size: .48rem;
@@ -90,6 +93,17 @@
         width: 0;
         clear: both;
     }
+    .show-all{
+        width: 3.173333rem;
+        height: .773333rem;
+        text-align: center;
+        line-height: .773333rem;
+        font-size: .32rem;
+        margin: .4rem 3.4rem .2rem;
+        background: #FFF;
+        border-radius: 0.17067rem;
+        border: 1px solid #e6e6e6;
+    }
 }
 
 </style>
@@ -117,7 +131,6 @@ export default {
       }
     })
       .then(function(res) {
-        console.log(res, 123);
         that.hotshow = res.data.data
       })
       .catch(function(error) {

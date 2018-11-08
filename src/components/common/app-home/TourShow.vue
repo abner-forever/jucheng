@@ -95,7 +95,6 @@ export default {
       }
     })
       .then(function(res) {
-        console.log(res, 123);
         that.tourshow = res.data.data
       })
       .catch(function(error) {

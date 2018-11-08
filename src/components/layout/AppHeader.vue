@@ -23,6 +23,7 @@
         top: 0;
         z-index: 999;
         background-color: #FDFDFD;
+        border-bottom: 1px solid #e7e7e7;
         .city{
             
             i{
@@ -37,7 +38,7 @@
             width: 6.8rem;
             height: .8rem;
             display: block;
-            border-radius: 5px;
+            border-radius: 0.21333rem;
             line-height: .8rem;
             color: #ccc;
             font-size: .32rem;

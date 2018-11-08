@@ -1,18 +1,20 @@
 <template>
-
-    <swiper class="slide-show " :options="swiperOption" ref="mySwiper">
-    <!-- slides -->
-    <swiper-slide
-        v-for = "item in imgs"
-        :key = 'item.id'
-        v-if= "imgs"
-    >
-    <img :src="'http://image.juooo.com/'+item.touch_image_url">
-    </swiper-slide>
-   
-    <!-- Optional controls -->
-    <div class="swiper-pagination"  slot="pagination"></div>
-  </swiper>
+    <div  class="slide-show ">
+        <swiper 
+                v-if= "imgs.length"
+            :options="swiperOption" ref="mySwiper">
+            <!-- slides -->
+            <swiper-slide
+                v-for = "item in imgs"
+                :key = 'item.id'
+            >
+            <img :src="'http://image.juooo.com/'+item.touch_image_url">
+            </swiper-slide>
+        
+            <!-- Optional controls -->
+            <div class="swiper-pagination"  slot="pagination"></div>
+        </swiper>
+    </div>
 </template>
 
 <style lang="scss">
@@ -24,6 +26,11 @@
         height: 100%;
     }
 }
+.swiper-pagination-bullet{
+    width: .16rem!important;
+    height: .16rem!important;
+    background:rgb(255, 255, 255)!important}//设置未选中的颜色
+.swiper-pagination-bullet-active{background:rgb(247, 93, 93)!important}//设置选中的颜色
 </style>
 
 <script>

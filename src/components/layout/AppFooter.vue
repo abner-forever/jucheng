@@ -51,12 +51,17 @@ export default {
     }
     .home_tab{
         background: url('/libs/images/home_tab.png') top center no-repeat;
+        background-size: 100%;
     }
     .show_tab{
         background: url('/libs/images/show_tab.png') top center no-repeat;
+        background-size: 100%;
+
     }
     .mine_tab{
         background: url('/libs/images/mine_tab.png') top center no-repeat;
+        background-size: 100%;
+
     }
     .active{
         background-position-y: -0.66667rem;

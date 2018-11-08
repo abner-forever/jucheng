@@ -9,15 +9,18 @@ Vue.use(Router)
 
 const routes = [
   {
+    path: '/',
+    redirect:'home'
+  },
+  {
     path: '/home',
     name: 'home',
     component: Home,
-    alias:'/'
   },
   {
     path: '/show',
     name: 'show',
-    component: Show
+    component: Show,
   },
   {
     path: '/mine',
