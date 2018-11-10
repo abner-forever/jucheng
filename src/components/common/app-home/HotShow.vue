@@ -118,24 +118,18 @@ export default {
      
     };
   },
-  created() {
-      let that = this
-    axios({
-      method: "post",
-      url: "/jz/index/hotsShowList",
-      data: qs.stringify({
-          city_id : 0
-      }),
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
+  async created() {
+    let result = await this.$http({
+        method: "post",
+        url: "/jz/index/hotsShowList",
+        data: qs.stringify({
+            city_id : 0
+        }),
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
       }
     })
-      .then(function(res) {
-        that.hotshow = res.data.data
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  }
+    this.hotshow = result.data;
+  },
 };
 </script>

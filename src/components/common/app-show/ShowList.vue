@@ -17,87 +17,99 @@
 </template>
 
 <style lang="scss" >
-    .bscroll{
-    width: 100%;
-    height: 81vH;
-    overflow: hidden;
+.bscroll {
+  width: 100%;
+  height: 81vh;
+  overflow: hidden;
 }
-    .show-list{
-    margin-top: 2.093333rem;
-    padding-top: .333333rem;
-    padding-bottom: 1.333333rem;
-    .show-wrap{
-        padding: 0 .4rem;
-        margin-top: .266667rem;
-        background-color: #fff;
-    }
-    }
+.show-list {
+  margin-top: 2.093333rem;
+  padding-top: 0.333333rem;
+  padding-bottom: 1.333333rem;
+  .show-wrap {
+    padding: 0 0.4rem;
+    margin-top: 0.266667rem;
+    background-color: #fff;
+  }
+}
 </style>
 
 <script>
-import axios from "axios"
-import qs from 'qs'
-import scroll from '@util/scroll'
-import ShowItem from '@components/common/app-show/ShowItem'
-export default {
-    props:['id'],
-    data(){
-        return {
-            showlist: [],
-            page: 1,
-        }
-    },
-    watch: {
-         id :{
-            immediate:true,
-            handler(){
-                this.showlist = [],
-                this.page = 1
-                this.getShowList();
-                console.log(this.id,this.page,9999);
-                
-            }
-        }
-    },
-    // create(){
-    //     this.getShowList()
-    // },
-    methods: {
-        getShowList(){
-            let that = this
-            axios({
-                method: 'post',
-                url: '/jz/Show/getShowList',
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                data: qs.stringify({
-                    city_id: -1,
-                    category: that.id,
-                    activity_id: 0,
-                    sort_type: 0,
-                    page: that.page
-                })
-            })
-            .then(function (res) {
-                that.page++
-                that.showlist = that.showlist.concat(res.data.data.list)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-            
+import axios from "axios";
+import qs from "qs";
+import scroll from "@util/scroll";
+import { Indicator, Toast } from "mint-ui";
 
-        }
-    },
-    components:{
-        ShowItem
-    },
-    mounted(){
-        this.scroll = scroll({
-            el: this.$refs.bscroll,
-            handler : this.getShowList.bind(this),
-        })  
+import ShowItem from "@components/common/app-show/ShowItem";
+export default {
+  props: ["id"],
+  data() {
+    return {
+      showlist: [],
+      page: 1,
+      hasMore: true
+    };
+  },
+  watch: {
+    id: {
+      immediate: true,
+      handler() {
+        this.showlist = [];
+        this.hasMore = true;
+        this.page = 1;
+        this.getShowList();
+      }
     }
-}
+  },
+  // create(){
+  //     this.getShowList()
+  // },
+  methods: {
+    async getShowList() {
+      if (!this.hasMore) {
+        if (this.instance) this.instance.close();
+        this.instance = Toast({
+          message: "没有更多了...",
+          position: "bottom"
+        });
+        return false;
+      }
+      Indicator.open({
+        spinnerType: "triple-bounce"
+      });
+      let result = await this.$http({
+        method: "post",
+        url: "/jz/Show/getShowList",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: qs.stringify({
+          city_id: -1,
+          category: this.id,
+          activity_id: 0,
+          sort_type: 0,
+          page: this.page
+        })
+      });
+      //判断是否还有数据
+      if (result.data === "") {
+        this.hasMore = false;
+      } else {
+        this.page++;
+        this.showlist = this.showlist.concat(result.data.list);
+      }
+      Indicator.close();
+    }
+  },
+  components: {
+    ShowItem
+  },
+  mounted() {
+    console.log(this.id, "showlist init");
+    this.scroll = scroll({
+      el: this.$refs.bscroll,
+      handler: this.getShowList.bind(this)
+    });
+  }
+};
 </script>

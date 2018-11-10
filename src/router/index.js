@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import Show from '../views/Show.vue'
 import Mine from '../views/Mine.vue'
+import Detail from '../views/Detail.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,12 @@ const routes = [
     path: '/home',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/detail',
+    name: 'detail',
+    component: Detail,
+    props: true
   },
   {
     path: '/show',

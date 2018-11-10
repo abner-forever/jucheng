@@ -1,6 +1,7 @@
 <template>
     <div class="app-show">
     <main>
+      
         <header class="search-top">
             <div class="search-bar">
                 <a href="" class="left">
@@ -9,7 +10,7 @@
                 </a>
                 <a href="" class="center">
                     <span class="fa fa-search"></span>
-                    <span >搜索演出艺人</span>
+                    <span >搜索演出艺人{{id}}</span>
                 </a>
                 <a href="" class="right">
                     <span class="fa fa-filter fa-2x"></span>
@@ -102,8 +103,9 @@
 <script>
 import ShowList from "@components/common/app-show/ShowList";
 import AppFooter from "@components/layout/AppFooter";
+import bus from "@util/bus";
 export default {
-  props: ["id"],
+  // props: ["id"],
   data() {
     return {
       search_navs: [
@@ -117,11 +119,17 @@ export default {
         { id: 91, title: "戏曲综艺" },
         { id: 99, title: "展览" }
       ],
+      id: ''
     };
   },
-  
-  monuted() {
-		  console.log('created show',this.id)
+
+  mounted(){
+    this.id = 0
+    bus.$on("idChange", ida => {
+      this.id = 79;
+      console.log(this.id, "change");
+    });
+    console.log(this.id, "show mounted");
   },
   components: {
     ShowList,

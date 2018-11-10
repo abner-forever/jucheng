@@ -21,6 +21,7 @@
 
 <style lang="scss">
 .tour-wraper{
+    touch-action: none;
     width: 9.666667rem;
     height: 4.853333rem;
     padding: .266667rem 0 .4rem .333333rem;
@@ -85,21 +86,16 @@ export default {
       }
     };
   },
-  created() {
-      let that = this
-    axios({
-      method: "post",
+ 
+  async created() {
+    let result = await this.$http({
+        method: "post",
       url: "/jz/Tour/ShowList",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
       }
     })
-      .then(function(res) {
-        that.tourshow = res.data.data
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+    this.tourshow = result.data;
   },
   computed: {
     swiper() {

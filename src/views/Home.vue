@@ -84,7 +84,7 @@ import SecKill from '@components/common/app-home/SecKill'
 import TourShow from '@components/common/app-home/TourShow'
 import HotShow from '@components/common/app-home/HotShow'
 
-
+import bus from "@util/bus";
 import AppFooter from '@components/layout/AppFooter'
 export default {
     components: {
@@ -116,10 +116,14 @@ export default {
     methods: {
         giveId(id){
             this.id=id
-            console.log('home',id);
-            
-            this.$emit('getId', this.id)
+            console.log('home',this.id);
+            bus.$emit('idChange',this.id)
         }
     },
+    // watch:{
+    //     id(newid){
+    //        this.$bus.$emit('idChange',newid,this.id)
+    //     }
+    // }
 }
 </script>

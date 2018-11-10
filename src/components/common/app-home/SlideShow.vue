@@ -1,8 +1,8 @@
 <template>
     <div  class="slide-show ">
         <swiper 
-                v-if= "imgs.length"
-            :options="swiperOption" ref="mySwiper">
+            v-if = "imgs.length"
+            :options = "swiperOption" ref="mySwiper">
             <!-- slides -->
             <swiper-slide
                 v-for = "item in imgs"
@@ -34,7 +34,6 @@
 </style>
 
 <script>
-import axios from 'axios'
 import qs from 'qs';
 export default {
     data(){
@@ -56,27 +55,21 @@ export default {
       }
     },
     //https://m.juooo.com/index/getNationalSildeList
-    created(){
-        let that = this
-       axios({
-                method: 'post',
-                url: '/jz/index/getNationalSildeList',
-                headers : {
-                    'Content-Type' : 'application/x-www-form-urlencoded'
-                },
-                data: qs.stringify({
-                    "confType": "L",
-                    "isSymbol": 1,
-                    "limit": 6
-                }),
-                })
-            .then(function (res) {
-                that.imgs = res.data.data
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    },
-
+    async created() {
+       
+        let result = await this.$http({
+        method: 'post',
+        url: '/jz/index/getNationalSildeList',
+        headers : {
+            'Content-Type' : 'application/x-www-form-urlencoded'
+        },
+        data: qs.stringify({
+            "confType": "L",
+            "isSymbol": 1,
+            "limit": 6
+        }),
+    });
+    this.imgs = result.data;
+  }
 }
 </script>

@@ -1,8 +1,9 @@
 <template>
-        <div class="show-item">
+        <div @click='goToDetail' class="show-item">
             <div class="img-box">
                 <img :src="'http://image.juooo.com/'+info.pic" >
-                <span class="logo-i"></span>
+                <span v-html="info.ico">
+                </span>
             </div>
             <div class="detail-box">
                 <p class="title">{{info.schedular_name}} </p>
@@ -24,7 +25,7 @@
             width: 2.373333rem;
             height: 3.173333rem;
             position: relative;
-            .logo-i{
+            .logo_i{
                 width: .773333rem;
                 height: .933333rem;
                 position: absolute;
@@ -74,6 +75,11 @@ export default {
       swiper() {
         return this.$refs.mySwiper.swiper
       }
+    },
+    methods:{
+        goToDetail () {
+          this.$router.push({ name: 'detail', params : {info: this.info}})
+      }  
     }
 }
 </script>
