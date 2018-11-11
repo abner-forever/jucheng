@@ -1,7 +1,6 @@
 <template>
     <div class="app-home">
     <main>
-      我的www
     </main>
     <app-footer></app-footer>
     </div>

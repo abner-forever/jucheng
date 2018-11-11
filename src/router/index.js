@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '../views/Home.vue'
 import Show from '../views/Show.vue'
 import Mine from '../views/Mine.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(Router)
 
@@ -23,7 +24,13 @@ const routes = [
     path: '/mine',
     name: 'mine',
     component: Mine
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
+   
 ]
 
 export default new Router({

@@ -4,8 +4,8 @@
         <swiper :options="swiperOption" ref="mySwiper">
             <!-- slides -->
             <swiper-slide
-                v-for= "item in secKillInfo"
-                :key= " item.cate_parent_id"
+                v-for= "(item,index) in secKillInfo"
+                :key= " index"
             >
                 <a class="show">
                     <div class="show-img-box">
