@@ -22,6 +22,7 @@ module.exports = {
                 .alias
                 .set('@style',resolve('src/style'))
                 .set('@libs',resolve('src/libs'))
+                .set('@util',resolve('src/util'))
                 .set('@components',resolve('src/components'))
     }
 }
