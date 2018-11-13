@@ -4,10 +4,10 @@
       
         <header class="search-top">
             <div class="search-bar">
-                <a href="" class="left">
+                <router-link to="/city" class="left">
                     <span class="city">全国</span>
                     <span class="fa fa-angle-down"></span>
-                </a>
+                </router-link>
                 <a href="" class="center">
                     <span class="fa fa-search"></span>
                     <span >搜索演出艺人{{id}}</span>

@@ -93,7 +93,7 @@ export default {
       url: "/jz/Tour/ShowList",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded"
-      }
+      },
     })
     this.tourshow = result.data;
   },

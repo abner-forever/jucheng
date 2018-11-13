@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 //axios
-import ajax from '@util/axios'
+import {ajax , request} from '@util/axios'
 
 //引入mint-ui
 import Mint from 'mint-ui';
@@ -20,4 +20,5 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */)
 Vue.use(Mint);
 
 Vue.prototype.$http = ajax
+Vue.prototype.$request = request
 Vue.prototype.$bus = bus

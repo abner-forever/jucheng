@@ -127,7 +127,8 @@ export default {
         }),
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
-      }
+      },
+      loading:true
     })
     this.hotshow = result.data;
   },

@@ -2,7 +2,7 @@
    <div class="detail-container">
         <header class="nav-header">
             <div class="left">
-                <a class="fa fa-angle-left fa-2x"></a>
+                <a @click="back" class="fa fa-angle-left fa-2x"></a>
             </div>
             <div class="right">
                 <a  class="fa fa-ellipsis-h fa-2x"></a>
@@ -343,7 +343,12 @@ export default {
     },
     created(){
         this.info ?this.item=this.info: this.item=JSON.parse(localStorage.getItem('info'))
-    }
+    },
+    methods : {
+        back(){
+            window.history.go(-1)
+        }
+    },
 
 };
 </script>
