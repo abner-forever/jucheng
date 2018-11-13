@@ -1,5 +1,5 @@
 <template>
-    <div class="seckill-wrap">
+    <div class="seckill-wrap" v-if="secKillInfo">
         <div class="title">现时秒杀</div>
         <swiper :options="swiperOption" ref="mySwiper">
             <!-- slides -->

@@ -5,6 +5,10 @@ import Show from '../views/Show.vue'
 import Mine from '../views/Mine.vue'
 import Login from '../views/Login.vue'
 import Detail from '../views/Detail.vue'
+import Login from '../views/Login.vue'
+import City from '../views/Cities.vue'
+
+import auth from '@util/auth'
 
 Vue.use(Router)
 
@@ -20,6 +24,11 @@ const routes = [
     component: Home,
   },
   {
+    path: '/city',
+    name: 'city',
+    component: City,
+  },
+  {
     path: '/detail',
     name: 'detail',
     component: Detail,
@@ -33,7 +42,11 @@ const routes = [
   {
     path: '/mine',
     name: 'mine',
-    component: Mine
+    component: Mine,
+    beforeEnter:  (to, from ,next) => {
+      let result = auth.authLogin()
+      next(result.id ? true : {name: 'login'})
+  }
   },
   {
     path: '/login',

@@ -68,6 +68,7 @@ export default {
             "isSymbol": 1,
             "limit": 6
         }),
+
     });
     this.imgs = result.data;
   }

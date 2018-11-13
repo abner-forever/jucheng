@@ -1,11 +1,42 @@
 import axios from 'axios'
-
+import { Indicator } from 'mint-ui'
 const ajax =(options,all)=>{
+    let _react = options.react === undefined ? true : options.react
+    options.params = options.params||{}
+
+    if(options.loading){
+        Indicator.open({
+            spinnerType:'triple-bounce'
+        })
+    }
+
+    return axios(options)
+        .then(res =>{
+            console.log(res);
+            
+            if(res.data.code === 1){
+                if(_react)console.log('data success access');
+            }else{
+                if(_react) console.log('data failed access');
+            }
+            if(options.loading) Indicator.close();
+            return all ? res :res.data
+        })
+        .catch(err=>{
+            console.log('access error');
+            if(options.loading) Indicator.close();
+            return err
+        })
+}
+
+const request =(options,all)=>{
     options.params = options.params||{}
 
     return axios(options)
         .then(res =>{
-            if(res.data.code=== 1){
+            console.log(res);
+            
+            if(res.data.msg === 'ok'){
                 console.log('data success access');
             }else{
                 console.log('data failed access');
@@ -17,5 +48,7 @@ const ajax =(options,all)=>{
             return err
         })
 }
-
-export default ajax
+export {
+    ajax,
+    request
+}

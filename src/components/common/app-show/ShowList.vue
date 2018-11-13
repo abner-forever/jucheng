@@ -74,9 +74,6 @@ export default {
         });
         return false;
       }
-      Indicator.open({
-        spinnerType: "triple-bounce"
-      });
       let result = await this.$http({
         method: "post",
         url: "/jz/Show/getShowList",
@@ -89,7 +86,8 @@ export default {
           activity_id: 0,
           sort_type: 0,
           page: this.page
-        })
+        }),
+        loading:true
       });
       //判断是否还有数据
       if (result.data === "") {
@@ -98,7 +96,7 @@ export default {
         this.page++;
         this.showlist = this.showlist.concat(result.data.list);
       }
-      Indicator.close();
+      
     }
   },
   components: {

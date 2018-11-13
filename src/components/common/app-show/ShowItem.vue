@@ -1,7 +1,7 @@
 <template>
         <div @click='goToDetail' class="show-item">
             <div class="img-box">
-                <img :src="'http://image.juooo.com/'+info.pic" >
+                <img v-lazy="'http://image.juooo.com/'+info.pic" >
                 <span v-html="info.ico">
                 </span>
             </div>

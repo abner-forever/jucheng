@@ -1,9 +1,9 @@
 <template>
     <header class="app-header">
-        <div class="city">
+        <router-link to='city'  class="city">
             <i class="fa fa-map-marker fa-2x"></i>
             <span>全国</span>
-        </div>
+        </router-link>
         <a href="javascript:;" class="search-input">
             搜索演出 艺人或场馆
         </a>
