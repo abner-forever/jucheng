@@ -27,3 +27,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+## 项目介绍
+```
+此项目采用vue开发的单页面路由应用的webapp 的移动端
+```
