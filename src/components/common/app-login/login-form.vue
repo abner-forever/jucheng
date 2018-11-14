@@ -22,7 +22,7 @@
         </div>
         <div v-else class="login-form pwd">
             <div class="login-item">
-                <input type="text" v-model="phone" placeholder="请输入手机号">
+                <input type="number" oninput="if(value.length>11)value = value.slice(0,11)" v-model="phone" maxlength="11" placeholder="请输入手机号">
             </div>
                 <div class="login-item check-code">
                     <input type="text" v-model="code" placeholder="请输入验证码">

@@ -20,9 +20,11 @@
             </li>
     
         </ul>
-        <div class="show-all">
+        <router-link 
+        :to= '{name:"show"}'
+         class="show-all">
             <a >查看全部演出 &nbsp;&nbsp;<i class="fa fa-angle-right"></i> </a>
-        </div>
+        </router-link>
     </div>
 </template>
 

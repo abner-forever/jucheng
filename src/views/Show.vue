@@ -5,12 +5,12 @@
         <header class="search-top">
             <div class="search-bar">
                 <router-link to="/city" class="left">
-                    <span class="city">全国</span>
+                    <span class="city">{{currentcity.cityName}}</span>
                     <span class="fa fa-angle-down"></span>
                 </router-link>
                 <a href="" class="center">
                     <span class="fa fa-search"></span>
-                    <span >搜索演出艺人{{id}}</span>
+                    <span >搜索演出艺人</span>
                 </a>
                 <a href="" class="right">
                     <span class="fa fa-filter fa-2x"></span>
@@ -20,7 +20,7 @@
                 <div class="search-nav-wrap">
                     <a class="search-nav-item"
                         v-for= "item in search_navs" :key = "item.id"
-                        @click = 'id = item.id'
+                        @click = 'getCategoryId(item.id)'
                         :class = "{active: item.id === id}"
                     >{{item.title}}</a>
                     
@@ -54,6 +54,7 @@
       display: flex;
       align-items: center;
       .city {
+        white-space: nowrap;
         margin-right: 0.106667rem;
       }
     }
@@ -74,6 +75,10 @@
     .right {
       width: 0.88rem;
       color: #666666;
+      span{
+      float: right;
+
+      }
     }
   }
   .search-nav {
@@ -104,8 +109,9 @@
 import ShowList from "@components/common/app-show/ShowList";
 import AppFooter from "@components/layout/AppFooter";
 import bus from "@util/bus";
+import { mapState } from "vuex";
+
 export default {
-  // props: ["id"],
   data() {
     return {
       search_navs: [
@@ -119,17 +125,23 @@ export default {
         { id: 91, title: "戏曲综艺" },
         { id: 99, title: "展览" }
       ],
-      id: ''
     };
   },
-
-  mounted(){
-    this.id = 0
-    bus.$on("idChange", ida => {
-      this.id = 79;
-      console.log(this.id, "change");
-    });
-    console.log(this.id, "show mounted");
+  computed: {
+    ...mapState(["city"]),
+    currentcity() {
+      return this.$store.state.city.currentcity;
+    },
+    id(){
+      return this.$store.state.category.categoryId
+    }
+  },
+  methods:{
+    getCategoryId(id){
+		this.$store.commit('category/getCategoryId',{
+			id: id
+		})
+	},
   },
   components: {
     ShowList,
