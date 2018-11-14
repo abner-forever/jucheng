@@ -14,7 +14,6 @@
                     </div>
                 </a>
             </swiper-slide>
-    
         </swiper>
     </div>
 </template>
@@ -80,9 +79,6 @@ export default {
         tourshow:[],
       swiperOption: {
         slidesPerView: "auto",
-        pagination: {
-          el: ".swiper-pagination"
-        }
       }
     };
   },

@@ -16,8 +16,8 @@ import bus from '@util/bus'
 // require styles
 import 'swiper/dist/css/swiper.css'
  
-Vue.use(VueAwesomeSwiper, /* { default global options } */)
 Vue.use(Mint);
+Vue.use(VueAwesomeSwiper, /* { default global options } */)
 
 Vue.prototype.$http = ajax
 Vue.prototype.$request = request

@@ -31,7 +31,8 @@
                 position: absolute;
                 right: 0;
                 top: 0;
-                background: url('/libs/images/ju_cheng.png')
+                background: url('/libs/images/ju_cheng.png');
+                background-size: 100%;
             }
         }
     }

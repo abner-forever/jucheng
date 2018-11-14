@@ -12,7 +12,7 @@
         <div class="current-city">
             <p class="area-title">当前城市</p>
             <div class="area-wrap">
-                <span class="area-item">北京</span>
+                <span class="area-item">{{currentcity.cityName}}</span>
             </div>
         </div>
         <div class="hot-city">
@@ -22,18 +22,12 @@
                 v-for='(city,index) in hotcities'
                 :key='index'
                 >{{city}}</span>
-                
+
             </div>
         </div>
-        <mt-index-section
-            v-for= " city in cities"
-            :key = 'city.id'
-         :index="city.id">
-            <mt-cell 
-                v-for= 'item in city.lists'
-                :key='item.id'
-           :title= "item.name"></mt-cell>
-             
+        <mt-index-section v-for=" city in cities" :key='city.id' :index="city.id">
+            <mt-cell v-for='item in city.lists' @click.native="changeCity(item)" :key='item.id' :title="item.name"></mt-cell>
+
         </mt-index-section>
     </mt-index-list>
 </div>
@@ -90,46 +84,62 @@
         padding-top: 0.4rem;
     }
 }
-.mint-cell-text{
+
+.mint-cell-text {
     font-size: .346667rem;
 }
-.mint-cell{
+
+.mint-cell {
     height: .8rem;
 }
-.mint-indexlist-nav{
-    border-left: none!important;
+
+.mint-indexlist-nav {
+    border-left: none !important;
 }
-.mint-indexlist-navitem{
-    font-size: 26px!important;
+
+.mint-indexlist-navitem {
+    font-size: .346667rem!important;
 }
-.mint-cell-wrapper{
-    padding: 0 .266667rem!important;
+
+.mint-cell-wrapper {
+    padding: 0 .266667rem !important;
 }
 </style>
 
 <script>
 import CityContent from '@components/common/app-city/CityContent.vue'
+import { mapState } from 'vuex'
+import { CHANGE_CITY } from '@/store/city/mutations-types'
 export default {
-    data(){
+    data() {
         return {
-            cities :[],
-            hotcities:[
-                '全国', '深圳', '广州', '北京', '上海', '成都', '重庆', '武汉', '长沙', '南京', '石家庄', '无锡', '宁波', '昆明', '西安', '苏州', '东莞', '厦门', '泉州', '杭州', '澳门', '连云港', '香港', '宜昌'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+            hotcities: [
+                '全国', '深圳', '广州', '北京', '上海', '成都', '重庆', '武汉', '长沙', '南京', '石家庄', '无锡', '宁波', '昆明', '西安', '苏州', '东莞', '厦门', '泉州', '杭州', '澳门', '连云港', '香港', '宜昌'
             ]
         }
     },
-    async beforeCreate(){
-        let result = await this.$http({
-            url:'/jz/Index/getCityList',
-            method:'post',
-        })
-        this.cities = result.city_list
-        console.log(result);
-        
-    },
-    methods : {
-        back(){
+   computed:{
+       ...mapState(['city']),
+        cities () {
+            return this.$store.state.city.cities
+        },
+         currentcity () {
+            return this.$store.state.city.currentcity
+        }
+   },
+    methods: {
+        back() {
             window.history.go(-1)
+        },
+        changeCity({id:cityId,name:cityName}){
+            this.$store.commit({
+                type:'city/'+CHANGE_CITY,
+                currentcity: {
+                    cityId , 
+                    cityName
+                }
+            })
+            this.back()
         }
     },
     components: {

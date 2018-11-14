@@ -12,7 +12,7 @@
                         :to= '{name:"show"}'
                         
                     >
-                        <div class="img-box"  @click= 'giveId(item.id)'>
+                        <div class="img-box"  @click= 'getCategoryId(item.id)'>
                             <img :src="item.img" alt="">
                         </div>
                         <p class="classfly">{{item.title}}</p>
@@ -98,32 +98,27 @@ export default {
     data (){
         return {
             categorys:[
-                {id:35,img:'http://image.juooo.com/group1/M00/01/9B/rAoKmVvFUxWAVCq7AAA1AYjHYo4689.png',title:'演唱会'},
-                {id:36,img:'http://image.juooo.com/group1/M00/02/45/rAoKNVvFUyCATRKeAAAs7TXa0as743.png',title:'音乐会'},
-                {id:37,img:'http://image.juooo.com/group1/M00/02/45/rAoKNVvFUyiAJYdkAAAznnkz53A336.png',title:'舞台剧'},
-                {id:79,img:'http://image.juooo.com/group1/M00/01/9B/rAoKmVvFUzCANA78AAAuNmAUVOY761.png',title:'音乐剧'},
-                {id:38,img:'http://image.juooo.com/group1/M00/02/45/rAoKNVvFUzmASY4pAAAm76AQAHw370.png',title:'儿童'}
+                {id:35,img:'http://image.juooo.com/group1/M00/01/AF/rAoKmVvo2QuARfUgAAAZVrHX6Vg901.png',title:'演唱会'},
+                {id:36,img:'http://image.juooo.com/group1/M00/02/59/rAoKNVvo2RWAZ4RrAAAqgMt_hEM195.png',title:'音乐会'},
+                {id:37,img:'http://image.juooo.com/group1/M00/01/AF/rAoKmVvo2R2AfAI7AAAqv8R6CX0470.png',title:'舞台剧'},
+                {id:79,img:'http://image.juooo.com/group1/M00/02/59/rAoKNVvo2SmAOP2NAAAkgcvLRNA615.png',title:'音乐剧'},
+                {id:38,img:'http://image.juooo.com/group1/M00/01/AF/rAoKmVvo2TOAe_AqAAAmm6GZ4Xo145.png',title:'儿童'}
             ],
             modules:[
                 {id:1,img:'http://image.juooo.com/group1/M00/02/47/rAoKNVvIIbGAD-K0AAAOH9v_NJM654.png',title:'演出日历'},
                 {id:2,img:'http://image.juooo.com/group1/M00/01/9D/rAoKmVvIIb2ALd7KAAAFL7b1wtg147.png',title:'特惠区'},
                 {id:3,img:'http://image.juooo.com/group1/M00/02/47/rAoKNVvIIcWAFU2WAAAJASjVCNQ181.png',title:'学生专区'},
-                {id:4,img:'http://image.juooo.com/group1/M00/01/9D/rAoKmVvIIc2AR3T7AAAGkekOAEY845.png',title:'欢聚橙卡'},
+                {id:4,img:'http://image.juooo.com/group1/M00/02/59/rAoKNVvpE6yALBlLAAA5L1UVFII012.png',title:'欢聚橙卡'},
             ],
             id:''
         }
     },
     methods: {
-        giveId(id){
-            this.id=id
-            console.log('home',this.id);
-            bus.$emit('idChange',this.id)
-        }
+        getCategoryId(id){
+             this.$store.commit('category/getCategoryId',{
+                 id: id
+             })
+        },
     },
-    // watch:{
-    //     id(newid){
-    //        this.$bus.$emit('idChange',newid,this.id)
-    //     }
-    // }
 }
 </script>

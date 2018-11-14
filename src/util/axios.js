@@ -1,49 +1,41 @@
 import axios from 'axios'
 import { Indicator } from 'mint-ui'
-const ajax =(options,all)=>{
-    let _react = options.react === undefined ? true : options.react
-    options.params = options.params||{}
+const ajax = (options, all) => {
+    options.params = options.params || {}
 
-    if(options.loading){
+    if (options.loading) {
         Indicator.open({
-            spinnerType:'triple-bounce'
+            spinnerType: 'triple-bounce'
         })
     }
 
     return axios(options)
-        .then(res =>{
-            console.log(res);
-            
-            if(res.data.code === 1){
-                if(_react)console.log('data success access');
-            }else{
-                if(_react) console.log('data failed access');
-            }
-            if(options.loading) Indicator.close();
-            return all ? res :res.data
+        .then(res => {
+
+            if (options.loading) Indicator.close();
+            return all ? res : res.data
         })
-        .catch(err=>{
+        .catch(err => {
             console.log('access error');
-            if(options.loading) Indicator.close();
+            if (options.loading) Indicator.close();
             return err
         })
 }
 
-const request =(options,all)=>{
-    options.params = options.params||{}
+const request = (options, all) => {
+    options.params = options.params || {}
+    let _react = options.react === undefined ? true : options.react
 
     return axios(options)
-        .then(res =>{
-            console.log(res);
-            
-            if(res.data.msg === 'ok'){
-                console.log('data success access');
-            }else{
-                console.log('data failed access');
+        .then(res => {
+            if (res.data.msg === 'ok') {
+                if (_react) console.log('data success access');
+            } else {
+                if (_react) console.log('data success access');
             }
-            return all ? res :res.data
+            return all ? res : res.data
         })
-        .catch(err=>{
+        .catch(err => {
             console.log('access error');
             return err
         })
