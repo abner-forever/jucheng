@@ -3,27 +3,20 @@
         <div class="title">热门演出</div>
         <ul class="hotshow-list clearfix">
             <!-- slides -->
-            <li class="list-item"
-                v-for= "(item,i) in hotshow" :key= 'i'
+            <li 
             >
-                <a class="tour">
-                    <div class="poster-box">
-                        <img :src="item.pic" alt="">
-                    </div>
-                    <div class="poster-desc">
-                        <p class="poster-name">{{item.show_name}}</p>
-                        <p class="poster-time">
-                            {{item.display_show_time.substr(0,11)}} <span class="poster-address">{{item.city_name}}</span>
-                        </p>
-                    </div>
-                </a>
+                <hot-show-item class="list-item"
+                v-for= "(item,i) in hotshow" :key= 'i'
+                @click= "goToDetail"
+                :item= 'item'
+                > 
+
+                </hot-show-item>
             </li>
     
         </ul>
-        <router-link 
-        :to= '{name:"show"}'
-         class="show-all">
-            <a >查看全部演出 &nbsp;&nbsp;<i class="fa fa-angle-right"></i> </a>
+        <router-link :to= '{name:"show"}' class="show-all">
+            查看全部演出 &nbsp;&nbsp;<i class="fa fa-angle-right"></i> 
         </router-link>
     </div>
 </template>
@@ -113,6 +106,7 @@
 <script>
 import axios from "axios"
 import qs from 'qs'
+import HotShowItem from '@components/common/app-home/HotShowItem.vue'
 export default {
   data() {
     return {
@@ -134,5 +128,13 @@ export default {
     })
     this.hotshow = result.data;
   },
+  methods:{
+      goToDetail () {
+          this.$router.push({ name: 'detail', params : {info: this.info}})
+      } 
+  },
+  components:{
+      HotShowItem
+  }
 };
 </script>

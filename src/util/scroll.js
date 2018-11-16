@@ -1,9 +1,7 @@
 import BScroll from "better-scroll";
 
-const scroll = ({
-    el,//拉动刷新的元素
-    handler, //拉动刷新后处理的函数
-})=>{
+const scroll = (options)=>{
+    let {el ,handler} = options
     let scroll = new BScroll(el,{
         probeType: 2,
         pullUpLoad: {
@@ -19,9 +17,6 @@ const scroll = ({
         scroll.finishPullUp()
         scroll.refresh()
     })
-    // scroll.on('scroll',()=>{
-    //     onscroll(scroll.y)
-    // })
     return scroll
 }
 export default scroll

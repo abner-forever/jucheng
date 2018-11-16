@@ -185,9 +185,11 @@ export default {
                     loginType:1
                 }
             })
-            console.log(result);
-            this.senCodeShow()
-            
+            console.log(result)
+            if(result.msg==='ok'){
+                localStorage.setItem('userInfo',JSON.stringify(result.data.data))
+                this.$router.replace({name:'mine'})
+            }
         },
     },
     watch: {

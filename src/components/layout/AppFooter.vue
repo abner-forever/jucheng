@@ -16,6 +16,7 @@
 	</div>
 </template>
 <script>
+import BScroll from "better-scroll";
 export default {
     data(){
         return {
@@ -25,7 +26,8 @@ export default {
                 {id :3, title:'我的',name:'mine_tab',path:'/mine'}
             ]
         }
-    }
+    },
+    
 }
 </script>
 

@@ -24,7 +24,7 @@ module.exports = {
             }
         } 
     },
-    chainWebpack (config){
+    chainWebpack (config){//配置快捷路径访问方式
         config.resolve
                 .alias
                 .set('@style',resolve('src/style'))

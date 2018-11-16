@@ -5,7 +5,6 @@ import Show from '../views/Show.vue'
 import Mine from '../views/Mine.vue'
 import Login from '../views/Login.vue'
 import Detail from '../views/Detail.vue'
-import Login from '../views/Login.vue'
 import City from '../views/Cities.vue'
 
 import auth from '@util/auth'

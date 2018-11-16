@@ -1,43 +1,50 @@
 <template>
     <div class="app-home">
         <app-header></app-header>
-        <main class="home-container">
-            <slide-show></slide-show>
-            <!-- 分类 -->
-           <div class="category-container">
-                <ul class="category-wrap">
-                    <router-link 
-                        v-for= "item in categorys" :key = 'item.id'
-                        :id= 'item.id'
-                        :to= '{name:"show"}'
-                        
-                    >
-                        <div class="img-box"  @click= 'getCategoryId(item.id)'>
-                            <img :src="item.img" alt="">
-                        </div>
-                        <p class="classfly">{{item.title}}</p>
-                    </router-link>
-                </ul>
-                <div class="module-wrap">
-                    <a v-for= "mod in modules" :key = 'mod.id'>
-                        <img :src="mod.img" >
-                        <p class="item-txt">{{mod.title}}</p>
-                    </a>
+        <div class="scroll" ref='root'>
+            <main class="home-container" >
+                <slide-show></slide-show>
+                <!-- 分类 -->
+            <div class="category-container">
+                    <ul class="category-wrap">
+                        <router-link 
+                            v-for= "item in categorys" :key = 'item.id'
+                            :id= 'item.id'
+                            :to= '{name:"show"}'
+                            
+                        >
+                            <div class="img-box"  @click= 'getCategoryId(item.id)'>
+                                <img :src="item.img" alt="">
+                            </div>
+                            <p class="classfly">{{item.title}}</p>
+                        </router-link>
+                    </ul>
+                    <div class="module-wrap">
+                        <a v-for= "mod in modules" :key = 'mod.id'>
+                            <img :src="mod.img" >
+                            <p class="item-txt">{{mod.title}}</p>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <!-- 限时秒杀 -->
-            <sec-kill></sec-kill>
-            <!-- 巡回展演 -->
-            <tour-show></tour-show>
-            <!-- 热门演出 -->
-            <hot-show></hot-show>
-        </main>
+                <!-- 限时秒杀 -->
+                <sec-kill></sec-kill>
+                <!-- 巡回展演 -->
+                <tour-show></tour-show>
+                <!-- 热门演出 -->
+                <hot-show></hot-show>
+            </main>
+        </div>
 
         <!-- 底部 -->
-        <app-footer></app-footer>
+        <app-footer v-if="isFooterShow"></app-footer>
     </div>
 </template>
 <style lang="scss">
+.app-home{
+    .scroll{
+        height: 17.786667rem;
+    }
+}
  .home-container{
      padding: 1.159733rem 0 1.333067rem;
      background-color: #fff;
@@ -86,6 +93,8 @@ import HotShow from '@components/common/app-home/HotShow'
 
 import bus from "@util/bus";
 import AppFooter from '@components/layout/AppFooter'
+
+import BScroll from 'better-scroll'
 export default {
     components: {
         SlideShow,
@@ -110,7 +119,9 @@ export default {
                 {id:3,img:'http://image.juooo.com/group1/M00/02/47/rAoKNVvIIcWAFU2WAAAJASjVCNQ181.png',title:'学生专区'},
                 {id:4,img:'http://image.juooo.com/group1/M00/02/59/rAoKNVvpE6yALBlLAAA5L1UVFII012.png',title:'欢聚橙卡'},
             ],
-            id:''
+            id:'',
+            isFooterShow: true,
+            scrollTop: 0
         }
     },
     methods: {
@@ -119,6 +130,29 @@ export default {
                  id: id
              })
         },
+
     },
+    watch:{
+        scrollTop:{
+            immediate: true,
+            handler(){
+                 console.log('hao');
+                 
+            }
+        }
+    },
+    mounted(){
+        
+        this.scroll = new BScroll('.scroll',{
+            bounce:false,
+            probeType:2,
+            click:true
+        })
+        onscroll: (directionY)=>{
+            this.$emit('update:isFooterShow',!!directionY==1)
+        }
+    }
+
+
 }
 </script>

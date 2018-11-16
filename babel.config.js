@@ -3,9 +3,9 @@ module.exports = {
 		'@vue/app'
 	],
 	"plugins": [["component",
-			{
-				"libraryName": "mint-ui",
-				"style": true
-			}
-		]]
+		{
+			"libraryName": "mint-ui",
+			"style": true
+		}
+	]]
 }

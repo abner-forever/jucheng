@@ -24,13 +24,13 @@
                 <article class="txt-desc">
                     <h3 class="title">{{item.schedular_name}}</h3>
                     <div class="row">
-                        时间：<span class="time">{{item.show_time}}</span>
+                        时间：<span class="time">{{item.show_time||item.display_show_time}}</span>
                     </div>
                     <a class="row venue" href="javascript:;">
-                        <span class="fl">场馆：</span><span class="place fl js-venue">{{item.v_name}}</span>
+                        <span class="fl">场馆：</span><span class="place fl js-venue">{{item.v_name||item.venue_name}}</span>
                         <i class="fa fa-location-arrow"></i>
                     </a>
-                    <div class="row price">¥<span class="num"> {{item.min_price}}-{{item.max_price}}</span> </div>
+                    <div class="row price">¥<span class="num"> {{item.show_price ?item.show_price: (item.min_price +"-"+item.max_price) }}</span> </div>
                     <div class="support" href="javascript:;">
                         <div>
                             支持：<span class="sup-item">橙PLUS卡免邮</span>

@@ -114,6 +114,17 @@ export default {
     data() {
         return {
             hotcities: [
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
+                // {id:0,city:'全国'},
                 '全国', '深圳', '广州', '北京', '上海', '成都', '重庆', '武汉', '长沙', '南京', '石家庄', '无锡', '宁波', '昆明', '西安', '苏州', '东莞', '厦门', '泉州', '杭州', '澳门', '连云港', '香港', '宜昌'
             ]
         }
@@ -121,10 +132,10 @@ export default {
    computed:{
        ...mapState(['city']),
         cities () {
-            return this.$store.state.city.cities
+            return this.city.cities
         },
          currentcity () {
-            return this.$store.state.city.currentcity
+            return this.city.currentcity
         }
    },
     methods: {
