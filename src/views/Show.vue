@@ -1,7 +1,6 @@
 <template>
     <div class="app-show">
     <main>
-      
         <header class="search-top">
             <div class="search-bar">
                 <router-link to="/city" class="left">

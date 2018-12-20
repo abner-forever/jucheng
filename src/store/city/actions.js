@@ -19,6 +19,16 @@ export default {
             url: '/jz/Index/getCityList',
             method: 'post',
         })
+
+        //筛选热门城市
+        let citys = Object.values(cities.city_list)
+        let temp = []
+        citys.forEach(item => {
+            temp = temp.concat(item.lists)
+        })
+        let hotcities = []
+        hotcities = temp.filter(item => item.is_city == 0)
+
         if (currentcity) {
             cityName = currentcity.city.replace('市', '')
             for (let i = 0; i < cities.city_list.length; i++) {
@@ -33,7 +43,8 @@ export default {
         context.commit({
             type: CHANGE_CITY,
             cities: cities.city_list,
-            currentcity: { cityId, cityName }
+            currentcity: { cityId, cityName },
+            hotcities: hotcities
         })
     }
 }

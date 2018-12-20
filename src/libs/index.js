@@ -11,6 +11,10 @@ import 'mint-ui/lib/style.css';
 //引入bus
 import bus from '@util/bus'
 
+//引入touch
+import VueTouch from 'vue-touch'
+Vue.use(VueTouch, {name: 'v-touch'})
+
 
  //全局注册
 // require styles

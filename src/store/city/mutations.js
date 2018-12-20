@@ -8,5 +8,8 @@ export default {
         if(payload.cities){
             state.cities = payload.cities
         }
+        if(payload.hotcities){
+            state.hotcities = payload.hotcities
+        }
     }
 }

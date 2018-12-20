@@ -140,16 +140,16 @@ export default {
         return {
             pwdShow: true,
             showTime: false,
-            time: 6,
+            time: 60,
             sendShow: false,
             phone: '',
-            code:''
+            code: ''
         }
     },
     methods: {
         senCodeShow() {
             this.showTime = true
-            this.time = 6
+            this.time = 60
             let timer = setInterval(() => {
                 this.time--
                 if (this.time <= 0) {
@@ -160,35 +160,35 @@ export default {
         },
         //发送验证码
         async sendCode() {
-            //https://m.juooo.com
             let result = await this.$request({
                 method: 'post',
-                url:'/mz/v4/api/code?__t='+Date.now(),
+                url: '/mz/v4/api/code?__t=' + Date.now(),
                 data: {
-                    mobile:this.phone,
+                    mobile: this.phone,
                     type: "2"
                 }
             })
             console.log(result);
             this.senCodeShow()
-            
+
         },
         //登录请求
         async login() {
-            //https://m.juooo.com
             let result = await this.$request({
                 method: 'post',
-                url:'/mz/v4/api/login?__t='+Date.now(),
+                url: '/mz/v4/api/login?__t=' + Date.now(),
                 data: {
-                    username:this.phone,
-                    password : this.code,
-                    loginType:1
+                    username: this.phone,
+                    password: this.code,
+                    loginType: 1
                 }
             })
             console.log(result)
-            if(result.msg==='ok'){
-                localStorage.setItem('userInfo',JSON.stringify(result.data.data))
-                this.$router.replace({name:'mine'})
+            if (result.msg === 'ok') {
+                localStorage.setItem('userInfo', JSON.stringify(result.data.data))
+                this.$router.replace({
+                    name: 'mine'
+                })
             }
         },
     },

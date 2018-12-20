@@ -3,5 +3,6 @@ export default{
         cityId:null,
         cityName:null
     },
-    cities : []
+    cities : [],
+    hotcities: []
 }

@@ -83,7 +83,7 @@
                 <i class="fa fa-user-circle"></i>
                 <span>客服</span>
             </div>
-            <div class="buy-now">立即购票</div>
+            <div @click="goTicket" class="buy-now">立即购票</div>
             <div class="seat-line">在线选座</div>
         </div>
    </div>
@@ -347,6 +347,9 @@ export default {
     methods : {
         back(){
             window.history.go(-1)
+        },
+        goTicket(){
+            this.$router.push({name:'ticket',params:{info : this.info}})
         }
     },
 

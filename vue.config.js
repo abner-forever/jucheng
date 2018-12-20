@@ -5,6 +5,7 @@ function resolve(url){
 }
 
 module.exports = {
+    baseUrl : '/jucheng/',  
     devServer: {
         port: 8000,
         proxy :{

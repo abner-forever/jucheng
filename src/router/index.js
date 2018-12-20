@@ -6,6 +6,7 @@ import Mine from '../views/Mine.vue'
 import Login from '../views/Login.vue'
 import Detail from '../views/Detail.vue'
 import City from '../views/Cities.vue'
+import Ticket from '../views/Ticket.vue'
 
 import auth from '@util/auth'
 
@@ -34,6 +35,12 @@ const routes = [
     props: true
   },
   {
+    path: '/ticket',
+    name: 'ticket',
+    component: Ticket,
+    props: true
+  },
+  {
     path: '/show',
     name: 'show',
     component: Show,
@@ -57,6 +64,6 @@ const routes = [
 
 export default new Router({
   mode: 'history',
-  // base: process.env.BASE_URL,
+  base: '/jucheng/',
   routes
 })

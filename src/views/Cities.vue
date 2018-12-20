@@ -19,15 +19,14 @@
             <p class="area-title">热门城市</p>
             <div class="area-wrap">
                 <span class="area-item"
-                v-for='(city,index) in hotcities'
-                :key='index'
-                >{{city}}</span>
-
+                v-for='city in hotcities'
+                :key='city.id'
+                @click="changeCity(city)"
+                >{{city.name}}</span>
             </div>
         </div>
         <mt-index-section v-for=" city in cities" :key='city.id' :index="city.id">
             <mt-cell v-for='item in city.lists' @click.native="changeCity(item)" :key='item.id' :title="item.name"></mt-cell>
-
         </mt-index-section>
     </mt-index-list>
 </div>
@@ -107,26 +106,25 @@
 </style>
 
 <script>
-import CityContent from '@components/common/app-city/CityContent.vue'
 import { mapState } from 'vuex'
 import { CHANGE_CITY } from '@/store/city/mutations-types'
 export default {
     data() {
         return {
-            hotcities: [
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                // {id:0,city:'全国'},
-                '全国', '深圳', '广州', '北京', '上海', '成都', '重庆', '武汉', '长沙', '南京', '石家庄', '无锡', '宁波', '昆明', '西安', '苏州', '东莞', '厦门', '泉州', '杭州', '澳门', '连云港', '香港', '宜昌'
-            ]
+            // hotcities: [
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     // {id:0,city:'全国'},
+            //     '全国', '深圳', '广州', '北京', '上海', '成都', '重庆', '武汉', '长沙', '南京', '石家庄', '无锡', '宁波', '昆明', '西安', '苏州', '东莞', '厦门', '泉州', '杭州', '澳门', '连云港', '香港', '宜昌'
+            // ]
         }
     },
    computed:{
@@ -136,7 +134,10 @@ export default {
         },
          currentcity () {
             return this.city.currentcity
-        }
+        },
+         hotcities () {
+            return this.city.hotcities
+        },
    },
     methods: {
         back() {
@@ -152,9 +153,7 @@ export default {
             })
             this.back()
         }
-    },
-    components: {
-        CityContent
     }
+    
 };
 </script>
