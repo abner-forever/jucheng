@@ -8,11 +8,9 @@
             :to= 'item.path'
             :class="item.name"
         >
-
         <p class="txt ">{{item.title}}</p>
 		</router-link>
-        
-		
+	
 	</div>
 </template>
 <script>

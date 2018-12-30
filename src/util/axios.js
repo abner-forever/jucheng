@@ -25,7 +25,6 @@ const ajax = (options, all) => {
 const request = (options, all) => {
     options.params = options.params || {}
     let _react = options.react === undefined ? true : options.react
-
     return axios(options)
         .then(res => {
             if (res.data.msg === 'ok') {

@@ -78,6 +78,7 @@ export default {
         }
     },
     methods: {
+        //去往详情页
         goToDetail() {
             this.$router.push({
                 name: 'detail',

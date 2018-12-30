@@ -100,7 +100,7 @@ import AppFooter from '@components/layout/AppFooter'
 
 import BScroll from 'better-scroll'
 export default {
-     name: 'Queue',
+    name: 'Queue',
     components: {
         SlideShow,
         AppHeader,

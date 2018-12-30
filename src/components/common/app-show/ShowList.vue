@@ -84,7 +84,7 @@ export default {
         }
     },
     methods: {
-        async getShowList() {
+        async   () {
             this.nodata = false;
             if (!this.hasMore) {
                 if (this.instance) this.instance.close();
